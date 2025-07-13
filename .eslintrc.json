@@ -1,0 +1,28 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true  
+  },
+  "parserOptions": {
+    "ecmaVersion": 12, // veya 2021
+    "sourceType": "module"
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "plugins": ["react", "react-hooks"],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "no-unused-vars": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect",
+      "pragma": "React",
+      "jsxRuntime": "automatic"
+    }
+  }
+}
