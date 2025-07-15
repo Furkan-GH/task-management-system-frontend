@@ -9,6 +9,8 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from 'react-router-dom';
+
 
 
 
@@ -24,7 +26,8 @@ function LoginRegisterTabs() {
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [gender, setGender] = useState('');
   const [birthDate, setBirthDate] = useState(null);
-
+  const navigate = useNavigate();
+  
   const handleLogin = () => {
      if (!email || !password) {
     toast.error("Lütfen tüm alanları doldurun!");
@@ -33,7 +36,10 @@ function LoginRegisterTabs() {
 
     axios
       .post('http://localhost:8080/api/auth/login', { email, password })
-      .then((res) => setMsg(res.data))
+      .then(res => {
+        localStorage.setItem("token",res.data.token);
+        navigate("/page");
+      })
       .catch((err) => setMsg('Hata: ' + err.message));
   };
 
@@ -54,7 +60,10 @@ function LoginRegisterTabs() {
         gender,
         birthDate
       })
-      .then((res) => setMsg(res.data))
+      .then(res => {
+        localStorage.setItem("token",res.data.token);
+        navigate("/page");
+      })
       .catch((err) => setMsg('Hata: ' + err.message));
   };
 
